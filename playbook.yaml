@@ -10,7 +10,7 @@
         surname: "Perez"
         upn: "jperez@tagost.com"
         password: "Abcd.123"
-        ou: "CN=Users,DC=tagost,DC=com"
+        path: "CN=Users,DC=tagost,DC=com"
         state: present
         enabled: yes
 
