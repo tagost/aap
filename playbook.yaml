@@ -1,0 +1,16 @@
+---
+- name: Crear OU y usuario AD
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Crear un usuario
+      microsoft.ad.user:
+        name: "jperez"
+        firstname: "Juan"
+        surname: "Perez"
+        upn: "jperez@tagost.com"
+        password: "Abcd.123"
+        ou: "CN=Users,DC=tagost,DC=com"
+        state: present
+        enabled: yes
+
