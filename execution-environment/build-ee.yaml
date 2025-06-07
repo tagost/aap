@@ -1,0 +1,16 @@
+---
+- name: Construir EE con Dockerfile usando Podman
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    ee_directory: /home/ansible/execution-environment  # Ruta a los archivos
+    ee_image_name: ee-custom:latest
+
+  tasks:
+    - name: Construir imagen con podman
+      ansible.builtin.command: >
+        podman build -t {{ ee_image_name }} .
+      args:
+        chdir: "{{ ee_directory }}"
+
