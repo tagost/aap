@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars:
-    ee_directory: /home/ansible/execution-environment         # Ruta al Dockerfile
+    ee_directory: execution-environment         # Ruta al Dockerfile
     ee_image_local: ee-custom:latest                          # Nombre local
     ee_image_remote: ansible-aap.apps.power.ocp.local/ee-custom:latest
 
