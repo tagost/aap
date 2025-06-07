@@ -16,7 +16,7 @@
     - name: Login en el registry
       ansible.builtin.command: >
         podman login -u {{ registry_username }} -p {{ registry_password }} {{ ee_image_remote.split('/')[0] }} --tls-verify=false
-      no_log: true
+      no_log: false
 
     - name: descargar imagen base
       ansible.builtin.command: >
