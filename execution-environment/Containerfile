@@ -5,11 +5,11 @@ RUN microdnf install -y \
       pip
 
 # Copiar requirements
-#COPY requirements.yaml /tmp/requirements.yaml
+COPY requirements.yaml /tmp/requirements.yaml
 #COPY requirements.txt /tmp/requirements.txt
 
 # Instalar collections y pip packages
-#RUN ansible-galaxy collection install -r /tmp/requirements.yaml \
+RUN ansible-galaxy collection install -r /tmp/requirements.yaml \
 # && pip3 install --no-cache-dir -r /tmp/requirements.txt
 
 
