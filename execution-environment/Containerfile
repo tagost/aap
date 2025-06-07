@@ -2,12 +2,11 @@ FROM ansible-aap.apps.power.ocp.local/ansible-automation-platform-25/ee-minimal-
 
 # Instalar system dependencies si es necesario
 RUN microdnf install -y \
-      pip \
-    && microdnf clean all
+      pip
 
 # Copiar requirements
-COPY requirements.yaml /tmp/requirements.yaml
-COPY requirements.txt /tmp/requirements.txt
+#COPY requirements.yaml /tmp/requirements.yaml
+#COPY requirements.txt /tmp/requirements.txt
 
 # Instalar collections y pip packages
 #RUN ansible-galaxy collection install -r /tmp/requirements.yaml \
