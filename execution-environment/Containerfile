@@ -1,4 +1,4 @@
-FROM ansible-aap.apps.power.ocp.local/ansible-automation-platform-24/ee-minimal-rhel9:latest
+FROM ansible-aap.apps.power.ocp.local/ansible-automation-platform-25/ee-minimal-rhel9:ppc64le
 
 # Instalar system dependencies si es necesario
 RUN microdnf install -y \
