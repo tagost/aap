@@ -12,6 +12,10 @@
     - name: Mostrar playbook_dir
       debug:
         msg: "El playbook está en: {{ playbook_dir }}"
+
+    - name: descargar imagen base
+      ansible.builtin.command: >
+        podman pull --tls-verify=false ansible-aap.apps.power.ocp.local/ansible-automation-platform-24/ee-minimal-rhel9:latest
     
     - name: Construir imagen con podman
       ansible.builtin.command: >
@@ -25,10 +29,10 @@
 
     - name: Login en el registry
       ansible.builtin.command: >
-        podman login -u {{ registry_username }} -p {{ registry_password }} {{ ee_image_remote.split('/')[0] }}
+        podman login -u {{ registry_username }} -p {{ registry_password }} {{ ee_image_remote.split('/')[0] }} --tls-verify=false
       no_log: true
 
     - name: Push de la imagen al registry remoto
       ansible.builtin.command: >
-        podman push {{ ee_image_remote }}
+        podman push {{ ee_image_remote }} --tls-verify=false
 

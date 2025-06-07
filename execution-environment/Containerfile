@@ -1,17 +1,16 @@
-FROM registry.redhat.io/ansible-automation-platform-23/ee-minimal-rhel9:latest
+FROM ansible-aap.apps.power.ocp.local/ansible-automation-platform-24/ee-minimal-rhel9:latest
 
 # Instalar system dependencies si es necesario
 RUN microdnf install -y \
-      git \
-      python3-pip \
+      pip \
     && microdnf clean all
 
 # Copiar requirements
-COPY requirements.yml /tmp/requirements.yml
+COPY requirements.yaml /tmp/requirements.yaml
 COPY requirements.txt /tmp/requirements.txt
 
 # Instalar collections y pip packages
-RUN ansible-galaxy collection install -r /tmp/requirements.yml \
+RUN ansible-galaxy collection install -r /tmp/requirements.yaml \
  && pip3 install --no-cache-dir -r /tmp/requirements.txt
 
 USER ansible
