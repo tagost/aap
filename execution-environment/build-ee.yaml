@@ -11,6 +11,10 @@
   tasks:
     - name: Construir imagen con podman
       ansible.builtin.command: >
+        pwd && ls -ltr
+
+    - name: Construir imagen con podman
+      ansible.builtin.command: >
         podman build -t {{ ee_image_local }} .
       #args:
       #  chdir: "{{ ee_directory }}"
