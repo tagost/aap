@@ -11,7 +11,7 @@
   tasks:
     - name: Construir imagen con podman
       ansible.builtin.command: >
-        pwd && ls -ltr
+        pwd
 
     - name: Construir imagen con podman
       ansible.builtin.command: >
