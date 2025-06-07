@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars:
-    ee_directory: execution-environment         # Ruta al Dockerfile
+    #ee_directory: execution-environment         # Ruta al Dockerfile
     ee_image_local: ee-custom:latest                          # Nombre local
     ee_image_remote: ansible-aap.apps.power.ocp.local/ee-custom:latest
 
@@ -12,8 +12,8 @@
     - name: Construir imagen con podman
       ansible.builtin.command: >
         podman build -t {{ ee_image_local }} .
-      args:
-        chdir: "{{ ee_directory }}"
+      #args:
+      #  chdir: "{{ ee_directory }}"
 
     - name: Etiquetar imagen para el registry remoto
       ansible.builtin.command: >
