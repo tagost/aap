@@ -1,16 +1,30 @@
 ---
-- name: Construir EE con Dockerfile usando Podman
+- name: Construir y subir EE con podman
   hosts: localhost
   gather_facts: false
 
   vars:
-    ee_directory: /home/ansible/execution-environment  # Ruta a los archivos
-    ee_image_name: ee-custom:latest
+    ee_directory: /home/ansible/execution-environment         # Ruta al Dockerfile
+    ee_image_local: ee-custom:latest                          # Nombre local
+    ee_image_remote: ansible-aap.apps.power.ocp.local/ee-custom:latest
 
   tasks:
     - name: Construir imagen con podman
       ansible.builtin.command: >
-        podman build -t {{ ee_image_name }} .
+        podman build -t {{ ee_image_local }} .
       args:
         chdir: "{{ ee_directory }}"
+
+    - name: Etiquetar imagen para el registry remoto
+      ansible.builtin.command: >
+        podman tag {{ ee_image_local }} {{ ee_image_remote }}
+
+    - name: Login en el registry
+      ansible.builtin.command: >
+        podman login -u {{ registry_username }} -p {{ registry_password }} {{ ee_image_remote.split('/')[0] }}
+      no_log: true
+
+    - name: Push de la imagen al registry remoto
+      ansible.builtin.command: >
+        podman push {{ ee_image_remote }}
 
