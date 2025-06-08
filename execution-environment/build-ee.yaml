@@ -20,11 +20,11 @@
 
     - name: descargar imagen base
       ansible.builtin.command: >
-        podman pull --tls-verify=false ansible-aap.apps.power.ocp.local/ee-custom:latest
+        podman pull --tls-verify=false {{ ee_image_remote }}
     
     - name: Construir imagen con podman
       ansible.builtin.command: >
-        podman build --cache-from {{ ee_image_remote }} -t {{ ee_image_local }} .
+        podman build --cache-from {{ ee_image_remote.split(':')[0] }} -t {{ ee_image_local }} .
       #args:
       #  chdir: "{{ ee_directory }}"
 
