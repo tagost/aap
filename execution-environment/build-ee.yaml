@@ -20,7 +20,6 @@
 
     - name: descargar imagen base
       ansible.builtin.command: >
-        podman pull --tls-verify=false ansible-aap.apps.power.ocp.local/ansible-automation-platform-25/ee-minimal-rhel9:ppc64le
         podman pull --tls-verify=false ansible-aap.apps.power.ocp.local/ee-custom:latest
     
     - name: Construir imagen con podman
