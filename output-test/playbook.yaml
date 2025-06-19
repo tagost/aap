@@ -1,5 +1,5 @@
 ---
-- name: Playbook de ejemplo en localhost sin instalar nada
+- name: Playbook de ejemplo en localhost con timer
   hosts: localhost
   gather_facts: yes
 
@@ -22,6 +22,12 @@
         path: /tmp/archivo_ansible.txt
         line: "Línea añadida por Ansible."
         insertafter: EOF
+
+    - name: Esperar 30 segundos
+      pause:
+        seconds: 30
+      # Puedes agregar un mensaje opcional:
+        prompt: "Esperando 30 segundos antes de continuar..."
 
     - name: Mostrar el contenido del archivo de ejemplo
       command: cat /tmp/archivo_ansible.txt
