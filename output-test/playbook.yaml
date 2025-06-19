@@ -1,0 +1,37 @@
+---
+- name: Playbook de ejemplo en localhost sin instalar nada
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Crear un archivo de ejemplo en /tmp
+      copy:
+        dest: /tmp/archivo_ansible.txt
+        content: |
+          Archivo generado por Ansible.
+          Fecha y hora: {{ ansible_date_time.iso8601 }}
+
+    - name: Crear un directorio en /tmp
+      file:
+        path: /tmp/ejemplo_directorio
+        state: directory
+        mode: '0755'
+
+    - name: Añadir una línea a un archivo en /tmp
+      lineinfile:
+        path: /tmp/archivo_ansible.txt
+        line: "Línea añadida por Ansible."
+        insertafter: EOF
+
+    - name: Mostrar el contenido del archivo de ejemplo
+      command: cat /tmp/archivo_ansible.txt
+      register: resultado_archivo
+
+    - name: Mostrar la salida del archivo creado
+      debug:
+        msg: "{{ resultado_archivo.stdout }}"
+
+    - name: Mostrar información básica del sistema
+      debug:
+        msg: "El sistema operativo es: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
