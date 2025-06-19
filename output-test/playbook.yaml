@@ -25,9 +25,9 @@
 
     - name: Esperar 30 segundos
       pause:
-        seconds: 30
+        seconds: 60
       # Puedes agregar un mensaje opcional:
-        prompt: "Esperando 30 segundos antes de continuar..."
+        prompt: "Esperando 60 segundos antes de continuar..."
 
     - name: Mostrar el contenido del archivo de ejemplo
       command: cat /tmp/archivo_ansible.txt
